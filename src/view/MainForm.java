@@ -1,7 +1,11 @@
 package view;
 
+import java.io.File;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class MainForm extends javax.swing.JFrame {
 
@@ -126,6 +130,11 @@ public class MainForm extends javax.swing.JFrame {
         jRadioButton2.setText("lapok összértéke");
 
         jButton3.setText("Mentés");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Kilépés");
 
@@ -228,8 +237,12 @@ public class MainForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMentesActionPerformed
-        // TODO add your handling code here:
+        mentes("Megnyitás", "BlackJackKesz");
     }//GEN-LAST:event_jMentesActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        mentes("Megnyitás", "BlackJackKesz");
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -293,4 +306,28 @@ public class MainForm extends javax.swing.JFrame {
     public void kilepes() {
 
     }
+
+    private void mentes(String cim, String konyvtar) {
+        JFileChooser f = new JFileChooser();
+        f.setDialogTitle(cim);
+        
+        FileFilter jpg = new FileNameExtensionFilter("*.jpg", "jpg");
+        FileFilter gif = new FileNameExtensionFilter("*.gif", "gif");
+        FileFilter txt = new FileNameExtensionFilter("*.txt", "txt");
+        f.addChoosableFileFilter(jpg);
+        f.addChoosableFileFilter(gif);
+        f.addChoosableFileFilter(txt);
+
+        beolvasottFajl(f);
+        
+
+    }
+    
+    private void beolvasottFajl(JFileChooser f){
+    int returnVal = f.showOpenDialog(null);
+        if(returnVal == JFileChooser.APPROVE_OPTION) {
+            ImageIcon icon = new ImageIcon(this.getClass().getResource("/view/res/ikon.jpg"));
+            JOptionPane.showConfirmDialog(this, "Fájl neve: "+f.getSelectedFile().getName()+"\nElérése: "+f.getSelectedFile().getAbsolutePath(),"Kérdés",JOptionPane.OK_CANCEL_OPTION,JOptionPane.INFORMATION_MESSAGE,icon);
+        }}
+
 }
