@@ -3,11 +3,14 @@ package view;
 import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class MainForm extends javax.swing.JFrame {
+
+    boolean voltValtozas = false;
 
     public MainForm() {
         initComponents();
@@ -50,6 +53,11 @@ public class MainForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("BlackJack");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Ellenfél"));
 
@@ -123,11 +131,26 @@ public class MainForm extends javax.swing.JFrame {
 
         jCheckBox1.setSelected(true);
         jCheckBox1.setText("Kilépésnél ment");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
 
         jRadioButton1.setText("lapokat felsorol");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
 
         jRadioButton2.setSelected(true);
         jRadioButton2.setText("lapok összértéke");
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Mentés");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -183,6 +206,11 @@ public class MainForm extends javax.swing.JFrame {
         jFile.add(jMentes);
 
         jKilepes.setText("Kilépés");
+        jKilepes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jKilepesActionPerformed(evt);
+            }
+        });
         jFile.add(jKilepes);
 
         jMenuBar1.add(jFile);
@@ -191,11 +219,21 @@ public class MainForm extends javax.swing.JFrame {
 
         buttonGroup1.add(rbKockaztat);
         rbKockaztat.setText("Kockáztat");
+        rbKockaztat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbKockaztatActionPerformed(evt);
+            }
+        });
         jMenu2.add(rbKockaztat);
 
         buttonGroup1.add(rbNemKockaztat);
         rbNemKockaztat.setSelected(true);
         rbNemKockaztat.setText("Nem kockáztat");
+        rbNemKockaztat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbNemKockaztatActionPerformed(evt);
+            }
+        });
         jMenu2.add(rbNemKockaztat);
 
         jMenuBar1.add(jMenu2);
@@ -244,6 +282,34 @@ public class MainForm extends javax.swing.JFrame {
         mentes("Megnyitás", "BlackJackKesz");
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jKilepesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jKilepesActionPerformed
+        kilep();
+    }//GEN-LAST:event_jKilepesActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        kilep();
+    }//GEN-LAST:event_formWindowClosing
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        voltValtozas = true;
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        voltValtozas = true;
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        voltValtozas = true;
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void rbKockaztatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbKockaztatActionPerformed
+        voltValtozas = true;
+    }//GEN-LAST:event_rbKockaztatActionPerformed
+
+    private void rbNemKockaztatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbNemKockaztatActionPerformed
+        voltValtozas = true;
+    }//GEN-LAST:event_rbNemKockaztatActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -277,6 +343,19 @@ public class MainForm extends javax.swing.JFrame {
 
     }
 
+    private void kilep() {
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        if (voltValtozas) {
+            if (JOptionPane.showConfirmDialog(this, "Biztos kilép?", "Kilépés", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE) == JOptionPane.CANCEL_OPTION) {
+                setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+                dispose();
+            }
+        } else {
+            dispose();
+        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
@@ -303,14 +382,10 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JRadioButtonMenuItem rbNemKockaztat;
     // End of variables declaration//GEN-END:variables
 
-    public void kilepes() {
-
-    }
-
     private void mentes(String cim, String konyvtar) {
         JFileChooser f = new JFileChooser();
         f.setDialogTitle(cim);
-        
+
         FileFilter jpg = new FileNameExtensionFilter("*.jpg", "jpg");
         FileFilter gif = new FileNameExtensionFilter("*.gif", "gif");
         FileFilter txt = new FileNameExtensionFilter("*.txt", "txt");
@@ -319,15 +394,15 @@ public class MainForm extends javax.swing.JFrame {
         f.addChoosableFileFilter(txt);
 
         beolvasottFajl(f);
-        
 
     }
-    
-    private void beolvasottFajl(JFileChooser f){
-    int returnVal = f.showOpenDialog(null);
-        if(returnVal == JFileChooser.APPROVE_OPTION) {
+
+    private void beolvasottFajl(JFileChooser f) {
+        int returnVal = f.showOpenDialog(null);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
             ImageIcon icon = new ImageIcon(this.getClass().getResource("/view/res/ikon.jpg"));
-            JOptionPane.showConfirmDialog(this, "Fájl neve: "+f.getSelectedFile().getName()+"\nElérése: "+f.getSelectedFile().getAbsolutePath(),"Kérdés",JOptionPane.OK_CANCEL_OPTION,JOptionPane.INFORMATION_MESSAGE,icon);
-        }}
+            JOptionPane.showConfirmDialog(this, "Fájl neve: " + f.getSelectedFile().getName() + "\nElérése: " + f.getSelectedFile().getAbsolutePath(), "Kérdés", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+    }
 
 }
