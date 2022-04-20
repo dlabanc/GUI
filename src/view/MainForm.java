@@ -16,6 +16,7 @@ public class MainForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -30,6 +31,13 @@ public class MainForm extends javax.swing.JFrame {
         jRadioButton2 = new javax.swing.JRadioButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jFile = new javax.swing.JMenu();
+        jMentes = new javax.swing.JMenuItem();
+        jKilepes = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        rbKockaztat = new javax.swing.JRadioButtonMenuItem();
+        rbNemKockaztat = new javax.swing.JRadioButtonMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("BlackJack");
@@ -146,6 +154,36 @@ public class MainForm extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jFile.setText("File");
+
+        jMentes.setText("Mentés");
+        jMentes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMentesActionPerformed(evt);
+            }
+        });
+        jFile.add(jMentes);
+
+        jKilepes.setText("Kilépés");
+        jFile.add(jKilepes);
+
+        jMenuBar1.add(jFile);
+
+        jMenu2.setText("Stratégia");
+
+        buttonGroup1.add(rbKockaztat);
+        rbKockaztat.setText("Kockáztat");
+        jMenu2.add(rbKockaztat);
+
+        buttonGroup1.add(rbNemKockaztat);
+        rbNemKockaztat.setSelected(true);
+        rbNemKockaztat.setText("Nem kockáztat");
+        jMenu2.add(rbNemKockaztat);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -175,6 +213,10 @@ public class MainForm extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMentesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMentesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMentesActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -208,19 +250,27 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JMenu jFile;
+    private javax.swing.JMenuItem jKilepes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JMenuItem jMentes;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButtonMenuItem rbKockaztat;
+    private javax.swing.JRadioButtonMenuItem rbNemKockaztat;
     // End of variables declaration//GEN-END:variables
 }
